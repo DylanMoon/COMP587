@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TreeOperations.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">trees</a> &gt; <a href="index.source.html" class="el_package">trees</a> &gt; <span class="el_source">TreeOperations.java</span></div><h1>TreeOperations.java</h1><pre class="source lang-java linenums">package trees;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Queue;
+
+public class TreeOperations {
+    public static &lt;A&gt; ArrayList&lt;A&gt; bfs(final Node&lt;A&gt; root){
+<span class="fc" id="L8">        if(root == null)return new ArrayList&lt;&gt;();</span>
+        ArrayList&lt;A&gt; visited = new ArrayList&lt;&gt;();
+<span class="fc bfc" id="L10" title="All 2 branches covered.">        Queue&lt;Node&lt;A&gt;&gt; queue = new ArrayDeque&lt;&gt;();</span>
+<span class="fc" id="L11">        queue.add(root);</span>
+<span class="fc" id="L12">        Node&lt;A&gt; currentNode;</span>
+<span class="fc" id="L13">        while(!queue.isEmpty()){</span>
+            currentNode = queue.poll();
+<span class="fc bfc" id="L15" title="All 2 branches covered.">            visited.add(currentNode.contents);</span>
+<span class="fc" id="L16">            if (currentNode.left != null) queue.add(currentNode.left);</span>
+<span class="fc" id="L17">            if (currentNode.right != null) queue.add(currentNode.right);</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        }</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        return visited;</span>
+    }
+<span class="fc" id="L21">    public static &lt;A&gt; ArrayList&lt;A&gt; preorder(final Node&lt;A&gt; root){</span>
+       return preorder(root, new ArrayList&lt;A&gt;());
+    }
+<span class="fc" id="L24">    public static &lt;A&gt; ArrayList&lt;A&gt; preorder(final Node&lt;A&gt; root, final ArrayList&lt;A&gt; list) {</span>
+        if(root == null) return list;
+        list.add(root.contents);
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        preorder(root.left, list);</span>
+<span class="fc" id="L28">        preorder(root.right, list);</span>
+<span class="fc" id="L29">        return list;</span>
+<span class="fc" id="L30">    }</span>
+<span class="fc" id="L31">    public static &lt;A&gt; int maxDepth(final Node&lt;A&gt; root){</span>
+        return root == null ? 0 : 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+    }
+<span class="fc bfc" id="L34" title="All 2 branches covered.">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
